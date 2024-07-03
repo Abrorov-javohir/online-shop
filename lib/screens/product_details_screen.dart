@@ -6,22 +6,21 @@ import 'package:uy_ishi_3/screens/cart_Screen.dart';
 class ProductDetailScreen extends StatelessWidget {
   final Product product;
 
-  const ProductDetailScreen({Key? key, required this.product})
-      : super(key: key);
+  const ProductDetailScreen({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context); // Back action
           },
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.share),
+            icon: const Icon(Icons.share),
             onPressed: () {
               // Share action
             },
@@ -37,7 +36,7 @@ class ProductDetailScreen extends StatelessWidget {
                 product.imageUrl,
                 height: 200,
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -59,10 +58,10 @@ class ProductDetailScreen extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         Text(
                           '\$${product.price.toStringAsFixed(2)}',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: Colors.green,
@@ -73,14 +72,14 @@ class ProductDetailScreen extends StatelessWidget {
                   ),
                   Column(
                     children: [
-                      Text(
+                      const Text(
                         'Choose Colors',
                         style: TextStyle(
                           color: Colors.grey,
                           fontSize: 14,
                         ),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Row(
                         children: [
                           ColorOption(Colors.orange),
@@ -92,24 +91,24 @@ class ProductDetailScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.star,
                     color: Colors.yellow,
                     size: 20,
                   ),
-                  SizedBox(width: 4),
+                  const SizedBox(width: 4),
                   Text(
                     product.rating.toString(),
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(width: 8),
-                  Text(
+                  const SizedBox(width: 8),
+                  const Text(
                     '124 reviews',
                     style: TextStyle(
                       fontSize: 16,
@@ -118,7 +117,7 @@ class ProductDetailScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               const Text(
                 'Simple & Minimalist Light',
                 style: TextStyle(
@@ -126,7 +125,7 @@ class ProductDetailScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               const Text(
                 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
                 style: TextStyle(
@@ -134,7 +133,7 @@ class ProductDetailScreen extends StatelessWidget {
                   color: Colors.grey,
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -161,30 +160,30 @@ class ProductDetailScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => CartScreen(),
+                          builder: (context) => const CartScreen(),
                         ),
                       ); // Add to cart action
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green,
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         horizontal: 48,
                         vertical: 16,
                       ),
                     ),
-                    child: Text('ADD TO CART'),
+                    child: const Text('ADD TO CART'),
                   ),
                   FloatingActionButton(
                     onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => CartScreen(),
+                          builder: (context) => const CartScreen(),
                         ),
                       ); // Shopping cart action
                     },
                     backgroundColor: Colors.green,
-                    child: Icon(Icons.shopping_cart),
+                    child: const Icon(Icons.shopping_cart),
                   ),
                 ],
               ),
@@ -204,7 +203,7 @@ class ColorOption extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 4.0),
+      margin: const EdgeInsets.symmetric(horizontal: 4.0),
       width: 24,
       height: 24,
       decoration: BoxDecoration(

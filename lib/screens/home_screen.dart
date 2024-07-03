@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uy_ishi_3/screens/living_room_screen.dart';
 import 'package:uy_ishi_3/model/product.dart';
+import 'package:uy_ishi_3/screens/profile_screen.dart';
 import 'package:uy_ishi_3/screens/wall_decoration_screen.dart';
 import 'product_card.dart';
 import 'cart_screen.dart';
@@ -23,9 +24,16 @@ class HomeScreen extends StatelessWidget {
             icon: const Icon(Icons.notifications),
             onPressed: () {},
           ),
-          const CircleAvatar(
-            backgroundImage: NetworkImage(
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx69Y_RCbbMRy3MGGrONWHltUnaYbsukXngQ&s'),
+          InkWell(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return ProfileScreen();
+              }));
+            },
+            child: const CircleAvatar(
+              backgroundImage: NetworkImage(
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx69Y_RCbbMRy3MGGrONWHltUnaYbsukXngQ&s'),
+            ),
           ),
           const SizedBox(width: 16),
         ],
@@ -43,7 +51,7 @@ class HomeScreen extends StatelessWidget {
                     onTap: () {
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
-                        return LivingRoomScreen();
+                        return const LivingRoomScreen();
                       }));
                     },
                     child: Container(
@@ -78,7 +86,7 @@ class HomeScreen extends StatelessWidget {
                     onTap: () {
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (context) {
-                        return WallDecorationScreen();
+                        return const WallDecorationScreen();
                       }));
                     },
                     child: Container(
@@ -152,23 +160,13 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Cart',
-          ),
-        ],
-        onTap: (index) {
-          if (index == 1) {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => CartScreen()));
-          }
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return const CartScreen();
+          }));
         },
+        child: const Icon(Icons.shopping_cart),
       ),
     );
   }

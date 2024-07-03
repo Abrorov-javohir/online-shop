@@ -4,6 +4,8 @@ import 'package:uy_ishi_3/model/product.dart';
 import 'package:uy_ishi_3/screens/product_card.dart';
 
 class WallDecorationScreen extends StatelessWidget {
+  const WallDecorationScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final products = Provider.of<ProductProvider>(context).products;
@@ -20,7 +22,7 @@ class WallDecorationScreen extends StatelessWidget {
               ),
             ),
             leading: IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back),
               onPressed: () {
                 Navigator.pop(context);
               },

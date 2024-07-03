@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class Product {
@@ -18,12 +19,35 @@ class Product {
     this.isLiked = false, // Default value
     this.quantity = 1,
   });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'imageUrl': imageUrl,
+      'name': name,
+      'type': type,
+      'price': price,
+      'rating': rating,
+      'isLiked': isLiked,
+      'quantity': quantity,
+    };
+  }
+
+  factory Product.fromJson(DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>;
+    return Product(
+      imageUrl: data['imageUrl'] ?? '',
+      name: data['name'] ?? '',
+      type: data['type'] ?? '',
+      price: (data['price'] ?? 0).toDouble(),
+      rating: (data['rating'] ?? 0).toDouble(),
+      isLiked: data['isLiked'] ?? false,
+      quantity: data['quantity'] ?? 1,
+    );
+  }
 }
 
-
-
 class ProductProvider with ChangeNotifier {
-  List<Product> _products = [
+  final List<Product> _products = [
     Product(
       imageUrl:
           'https://www.ikea.com/us/en/images/products/isnalen-led-work-lamp-red-brass-color__1053465_pe847031_s5.jpg?f=s',
@@ -55,12 +79,11 @@ class ProductProvider with ChangeNotifier {
       price: 80.00,
       rating: 3.5,
     ),
-    // Add more products as needed
   ];
 
   List<Product> get products => _products;
 
-  List<Product> _cartItems = [];
+  final List<Product> _cartItems = [];
 
   List<Product> get cartItems => _cartItems;
 

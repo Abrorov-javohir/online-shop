@@ -4,6 +4,8 @@ import 'package:uy_ishi_3/model/product.dart';
 import 'package:uy_ishi_3/screens/home_screen.dart';
 
 class PaymentScreen extends StatelessWidget {
+  const PaymentScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final cartItems = Provider.of<ProductProvider>(context).cartItems;
@@ -11,7 +13,7 @@ class PaymentScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context); // Back action
           },
@@ -24,29 +26,29 @@ class PaymentScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
+            const Icon(
               Icons.check_circle,
               color: Colors.green,
               size: 80,
             ),
-            SizedBox(height: 24),
-            Text(
+            const SizedBox(height: 24),
+            const Text(
               'Payment Successful!',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 8),
-            Text(
+            const SizedBox(height: 8),
+            const Text(
               'Orders will arrive in 3 days!',
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.grey,
               ),
             ),
-            SizedBox(height: 24),
-            Container(
+            const SizedBox(height: 24),
+            SizedBox(
               height: 100,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
@@ -55,7 +57,7 @@ class PaymentScreen extends StatelessWidget {
                   final item = cartItems[index];
                   return Container(
                     width: 100,
-                    margin: EdgeInsets.only(right: 8),
+                    margin: const EdgeInsets.only(right: 8),
                     child: Column(
                       children: [
                         Image.network(
@@ -63,10 +65,10 @@ class PaymentScreen extends StatelessWidget {
                           height: 50,
                           width: 50,
                         ),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         Text(
                           item.name,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 12,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -77,20 +79,20 @@ class PaymentScreen extends StatelessWidget {
                 },
               ),
             ),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => HomeScreen()));
+                    MaterialPageRoute(builder: (context) => const HomeScreen()));
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green,
-                padding: EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                   horizontal: 48,
                   vertical: 16,
                 ),
               ),
-              child: Text(
+              child: const Text(
                 'BACK TO HOME',
                 style: TextStyle(
                   fontSize: 16,

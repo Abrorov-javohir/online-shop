@@ -4,6 +4,8 @@ import 'package:uy_ishi_3/model/product.dart';
 import 'package:uy_ishi_3/screens/cart_screen2.dart';
 
 class CartScreen extends StatelessWidget {
+  const CartScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final cartItems = Provider.of<ProductProvider>(context).cartItems;
@@ -16,12 +18,12 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context); // Back action
           },
         ),
-        title: Text('My Cart'),
+        title: const Text('My Cart'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -46,13 +48,13 @@ class CartScreen extends StatelessWidget {
                         children: [
                           Text(
                             '\$${(item.price * item.quantity).toStringAsFixed(2)}',
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.green,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           IconButton(
-                            icon: Icon(Icons.remove_shopping_cart),
+                            icon: const Icon(Icons.remove_shopping_cart),
                             onPressed: () {
                               Provider.of<ProductProvider>(context,
                                       listen: false)
@@ -66,11 +68,11 @@ class CartScreen extends StatelessWidget {
                 },
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'Total:',
                   style: TextStyle(
                     fontSize: 20,
@@ -79,7 +81,7 @@ class CartScreen extends StatelessWidget {
                 ),
                 Text(
                   '\$${total.toStringAsFixed(2)}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.green,
@@ -87,7 +89,7 @@ class CartScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context)
@@ -97,12 +99,12 @@ class CartScreen extends StatelessWidget {
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green,
-                padding: EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                   horizontal: 48,
                   vertical: 16,
                 ),
               ),
-              child: Text('Check cart'),
+              child: const Text('Check cart'),
             ),
           ],
         ),

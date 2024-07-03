@@ -6,7 +6,7 @@ import 'package:uy_ishi_3/screens/product_details_screen.dart';
 class ProductCard extends StatelessWidget {
   final Product product;
 
-  const ProductCard({Key? key, required this.product}) : super(key: key);
+  const ProductCard({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,7 @@ class ProductCard extends StatelessWidget {
                       color: Colors.amber,
                     ),
                     Text(
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 10,
                       ),
                       product.rating.toString(),
@@ -80,7 +80,7 @@ class ProductCard extends StatelessWidget {
                         product.isLiked
                             ? Icons.favorite
                             : Icons.favorite_border,
-                            size: 10,
+                        size: 10,
                         color: product.isLiked ? Colors.red : null,
                       ),
                       onPressed: () {

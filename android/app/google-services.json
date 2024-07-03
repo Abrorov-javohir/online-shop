@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "644339608743",
+    "project_id": "onlineshop-1bc80",
+    "storage_bucket": "onlineshop-1bc80.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644339608743:android:b2fe849547721d1162ff82",
+        "android_client_info": {
+          "package_name": "com.example.uy_ishi_3"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvXYGVotz05vWSjxRvPGomjBPel-9gJaU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
