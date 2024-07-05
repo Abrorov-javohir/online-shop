@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uy_ishi_3/screens/living_room_screen.dart';
-import 'package:uy_ishi_3/model/product.dart';
 import 'package:uy_ishi_3/screens/profile_screen.dart';
 import 'package:uy_ishi_3/screens/wall_decoration_screen.dart';
+import 'package:uy_ishi_3/model/product_provider.dart';
 import 'product_card.dart';
 import 'cart_screen.dart';
 
@@ -27,7 +27,7 @@ class HomeScreen extends StatelessWidget {
           InkWell(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return ProfileScreen();
+                return const ProfileScreen();
               }));
             },
             child: const CircleAvatar(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uy_ishi_3/model/product.dart';
+import 'package:uy_ishi_3/model/product_provider.dart';
 import 'package:uy_ishi_3/screens/cart_screen2.dart';
 
 class CartScreen extends StatelessWidget {
@@ -12,7 +13,7 @@ class CartScreen extends StatelessWidget {
 
     double total = cartItems.fold(
       0.0,
-      (sum, item) => sum + item.price * item.quantity,
+      (sum, item) => sum + item.price,
     );
 
     return Scaffold(
@@ -42,12 +43,12 @@ class CartScreen extends StatelessWidget {
                         height: 50,
                       ),
                       title: Text(item.name),
-                      subtitle: Text('${item.type} x${item.quantity}'),
+                      subtitle: Text('${item.name} x${item.price}'),
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            '\$${(item.price * item.quantity).toStringAsFixed(2)}',
+                            '\$${(item.price).toStringAsFixed(2)}',
                             style: const TextStyle(
                               color: Colors.green,
                               fontWeight: FontWeight.bold,

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:uy_ishi_3/model/product.dart';
+import 'product.dart';
 
 class ProductProvider with ChangeNotifier {
   final List<Product> _products = [];
   final List<Product> _cartItems = [];
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   ProductProvider() {
     _fetchProductsFromFirestore();
@@ -14,19 +15,16 @@ class ProductProvider with ChangeNotifier {
   List<Product> get cartItems => _cartItems;
 
   Future<void> _fetchProductsFromFirestore() async {
-    final QuerySnapshot snapshot =
-        await FirebaseFirestore.instance.collection('products').get();
-    _products.clear();
-    for (var doc in snapshot.docs) {
-      _products.add(Product(
-        imageUrl: doc['imageUrl'],
-        name: doc['name'],
-        type: doc['type'],
-        price: doc['price'],
-        rating: doc['rating'],
-      ));
+    try {
+      final QuerySnapshot snapshot = await _firestore.collection('shop').get();
+      _products.clear();
+      for (var doc in snapshot.docs) {
+        _products.add(Product.fromDocument(doc));
+      }
+      notifyListeners();
+    } catch (e) {
+      print('Error fetching products: $e');
     }
-    notifyListeners();
   }
 
   void toggleLikeStatus(Product product) {

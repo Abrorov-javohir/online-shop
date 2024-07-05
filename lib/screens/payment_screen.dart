@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uy_ishi_3/model/product.dart';
+import 'package:uy_ishi_3/model/product_provider.dart';
 import 'package:uy_ishi_3/screens/home_screen.dart';
 
 class PaymentScreen extends StatelessWidget {

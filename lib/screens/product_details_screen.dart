@@ -1,12 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uy_ishi_3/model/product.dart';
+import 'package:uy_ishi_3/model/product_provider.dart';
 import 'package:uy_ishi_3/screens/cart_Screen.dart';
 
-class ProductDetailScreen extends StatelessWidget {
+class ProductDetailScreen extends StatefulWidget {
   final Product product;
 
   const ProductDetailScreen({super.key, required this.product});
+
+  @override
+  State<ProductDetailScreen> createState() => _ProductDetailScreenState();
+}
+
+class _ProductDetailScreenState extends State<ProductDetailScreen> {
+  late bool isLiked;
+
+  @override
+  void initState() {
+    super.initState();
+    isLiked = widget.product.isLiked;
+  }
+
+  void toggleLike() {
+    setState(() {
+      isLiked = !isLiked;
+      widget.product.isLiked = isLiked;
+      // Here you can also update the liked status in Firestore if needed
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +55,7 @@ class ProductDetailScreen extends StatelessWidget {
           child: Column(
             children: [
               Image.network(
-                product.imageUrl,
+                widget.product.imageUrl,
                 height: 200,
               ),
               const SizedBox(height: 16),
@@ -45,14 +67,14 @@ class ProductDetailScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          product.type,
+                          widget.product.name,
                           style: const TextStyle(
                             color: Colors.grey,
                             fontSize: 14,
                           ),
                         ),
                         Text(
-                          product.name,
+                          widget.product.name,
                           style: const TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
@@ -60,7 +82,7 @@ class ProductDetailScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          '\$${product.price.toStringAsFixed(2)}',
+                          '\$${widget.product.price.toStringAsFixed(2)}',
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -101,7 +123,7 @@ class ProductDetailScreen extends StatelessWidget {
                   ),
                   const SizedBox(width: 4),
                   Text(
-                    product.rating.toString(),
+                    widget.product.rating.toString(),
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -141,22 +163,17 @@ class ProductDetailScreen extends StatelessWidget {
                     builder: (context, provider, child) {
                       return IconButton(
                         icon: Icon(
-                          product.isLiked
-                              ? Icons.favorite
-                              : Icons.favorite_border,
-                          color: Colors.red,
-                          size: 32,
+                          isLiked ? Icons.favorite : Icons.favorite_border,
+                          color: isLiked ? Colors.red : null,
                         ),
-                        onPressed: () {
-                          provider.toggleLikeStatus(product);
-                        },
+                        onPressed: toggleLike,
                       );
                     },
                   ),
                   ElevatedButton(
                     onPressed: () {
                       Provider.of<ProductProvider>(context, listen: false)
-                          .addToCart(product);
+                          .addToCart(widget.product);
                       Navigator.push(
                         context,
                         MaterialPageRoute(

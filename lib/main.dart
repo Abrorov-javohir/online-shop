@@ -1,12 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uy_ishi_3/firebase_options.dart';
-import 'package:uy_ishi_3/model/product.dart';
+import 'package:uy_ishi_3/model/product_provider.dart';
 import 'package:uy_ishi_3/screens/home_screen.dart';
 import 'package:uy_ishi_3/screens/login_screen.dart';
 import 'package:uy_ishi_3/screens/register_screen.dart';
+import 'package:uy_ishi_3/service/firebase_product_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,8 +27,11 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => ProductProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ProductProvider()),
+        ChangeNotifierProvider(create: (context) => FirebaseProductService()),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: StreamBuilder<User?>(
